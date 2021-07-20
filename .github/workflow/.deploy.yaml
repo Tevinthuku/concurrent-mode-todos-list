@@ -1,0 +1,26 @@
+name: Push stack to heroku
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Release API
+      uses: akhileshns/heroku-deploy@v3.0.4
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: "todos-graphql-server"
+        heroku_email: ${{secrets.HEROKU_API_KEY}}
+      env:
+        HD_APP_BASE: "packages/server"
+    - name: Release Web Client
+      uses: akhileshns/heroku-deploy@v3.0.4
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: "todos-relay-client"
+        heroku_email: ${{secrets.HEROKU_API_KEY}}
+      env:
+        HD_APP_BASE: "packages/www"
+        HD_REACT_APP_API_URL: "https://todos-graphql-server.herokuapp.com"
