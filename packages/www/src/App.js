@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import graphql from "babel-plugin-relay/macro";
+import {
+  RelayEnvironmentProvider,
+  loadQuery,
+  usePreloadedQuery,
+} from "react-relay/hooks";
+import RelayEnvironment from "./RelayEnvironment";
 
-function App() {
+import ErrorBoundary from "./Errorboundary";
+
+const { Suspense } = React;
+
+// Define a query
+const SimpleNameQuery = graphql`
+  query AppSimpleNameQuery {
+    hello(name: "relay")
+  }
+`;
+
+const preloadedQuery = loadQuery(RelayEnvironment, SimpleNameQuery, {
+  /* query variables */
+});
+
+function App(props) {
+  const data = usePreloadedQuery(SimpleNameQuery, props.preloadedQuery);
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>{data.hello}</p>
       </header>
     </div>
   );
 }
 
-export default App;
+function AppRoot(props) {
+  return (
+    <ErrorBoundary
+      fallback={({ error }) => <div>Error:: {JSON.stringify(error)}</div>}
+    >
+      <RelayEnvironmentProvider environment={RelayEnvironment}>
+        <Suspense fallback={"Loading..."}>
+          <App preloadedQuery={preloadedQuery} />
+        </Suspense>
+      </RelayEnvironmentProvider>
+    </ErrorBoundary>
+  );
+}
+
+export default AppRoot;

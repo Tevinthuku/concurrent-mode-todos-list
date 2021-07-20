@@ -8,14 +8,17 @@
     "@testing-library/user-event": "^12.1.10",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-relay": "^11.0.2",
     "react-scripts": "4.0.3",
+    "relay-runtime": "^11.0.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "yarn run relay; concurrently --kill-others --names \"react-scripts,relay\" \"react-scripts start\" \"yarn run relay --watch\"",
+    "build": "yarn run relay && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "relay": "yarn run relay-compiler --schema schema/schema.graphql --src ./src/ $@"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +37,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-plugin-relay": "^11.0.2",
+    "concurrently": "^6.2.0",
+    "graphql": "^15.5.1",
+    "relay-compiler": "^11.0.2"
   }
 }
