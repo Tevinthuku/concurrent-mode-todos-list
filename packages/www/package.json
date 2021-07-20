@@ -16,11 +16,11 @@
   },
   "scripts": {
     "flow": "flow",
-    "start": "yarn run relay; concurrently --kill-others --names \"react-scripts,relay\" \"react-scripts start\" \"yarn run relay --watch\"",
-    "build": "yarn run relay && react-scripts build",
+    "start": "npm run relay; concurrently --kill-others --names \"react-scripts,relay\" \"react-scripts start\" \"npm run relay --watch\"",
+    "build": "npm run relay && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "relay": "yarn run relay-compiler --schema src/schema/schema.graphql --src ./src/ $@"
+    "relay": "npm run relay-compiler --schema src/schema/schema.graphql --src ./src/ $@"
   },
   "eslintConfig": {
     "extends": [
