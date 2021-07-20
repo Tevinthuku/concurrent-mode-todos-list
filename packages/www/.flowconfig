@@ -1,0 +1,14 @@
+[ignore]
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+module.name_mapper='schema' -> '<PROJECT_ROOT>/src/schema'
+module.file_ext=.js
+module.file_ext=.graphql
+
+[strict]

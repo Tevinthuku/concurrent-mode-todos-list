@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "flow-bin": "^0.155.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-relay": "^11.0.2",
@@ -14,11 +15,12 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "flow": "flow",
     "start": "yarn run relay; concurrently --kill-others --names \"react-scripts,relay\" \"react-scripts start\" \"yarn run relay --watch\"",
     "build": "yarn run relay && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "relay": "yarn run relay-compiler --schema schema/schema.graphql --src ./src/ $@"
+    "relay": "yarn run relay-compiler --schema src/schema/schema.graphql --src ./src/ $@"
   },
   "eslintConfig": {
     "extends": [
