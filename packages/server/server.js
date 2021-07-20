@@ -1,6 +1,7 @@
 var express = require("express");
 var { graphqlHTTP } = require("express-graphql");
 var { buildSchema } = require("graphql");
+var cors = require("cors");
 
 const PORT = process.env.PORT || 4000;
 const PRODUCTION = process.env.NODE_ENV === "production";
@@ -19,6 +20,8 @@ var root = {
 };
 
 var app = express();
+app.use(cors());
+
 app.use(
   "/graphql",
   graphqlHTTP({
