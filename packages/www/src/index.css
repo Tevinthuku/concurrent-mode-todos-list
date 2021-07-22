@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #282c34;
 }
 
 code {
@@ -28,7 +29,6 @@ code {
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -49,4 +49,20 @@ code {
   to {
     transform: rotate(360deg);
   }
+}
+
+.List-Container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.List-Header {
+  color: white;
+}
+
+.List-Item {
+  margin: 20px;
 }

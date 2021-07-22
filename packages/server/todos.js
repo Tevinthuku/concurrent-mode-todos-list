@@ -6,7 +6,7 @@ class Todos {
   }
 
   get(id) {
-    return todosList.find((todo) => todo.id === id);
+    return todosList.find((todo) => todo.id === Number(id));
   }
 }
 

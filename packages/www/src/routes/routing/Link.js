@@ -35,6 +35,10 @@ export default function Link(props) {
 
   return (
     <a
+      style={{
+        color: "white",
+        textDecoration: "none",
+      }}
       href={props.to}
       onClick={changeRoute}
       onMouseEnter={preloadRouteCode}
