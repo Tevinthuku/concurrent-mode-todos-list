@@ -1,6 +1,6 @@
-# relay-with-suspense-todos-list
+# relay-with-suspense-todos-list 🧪 ⚠️
 
-This is an experimental repository which leverages the new react Suspense. 
+This is an experimental repository which leverages the new react concurent mode. 
 
 
 ## Workspaces
