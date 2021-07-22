@@ -16,6 +16,23 @@ This is an experimental repository which leverages the new react concurent mode.
 Its amazing how far React & the community has come.
 
 
+## To setup
+1. Install lerna globally
+```
+npm install --global lerna
+```
+2. Clone the repo
+3. Run 
+```
+lerna boostrap
+```
+4. Start the react dev server
+
+```
+npm run dev -- --scope=www
+```
+
+
 #### TODOs
 - [ ] Integrate mutations, (toggling a todo)
 - [ ] Use Fragments to colocate data, (todo with subtodos)
