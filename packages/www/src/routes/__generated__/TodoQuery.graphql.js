@@ -8,23 +8,27 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type TodosListQueryVariables = {||};
-export type TodosListQueryResponse = {|
-  +listTodos: $ReadOnlyArray<{|
+export type TodoQueryVariables = {|
+  id: string
+|};
+export type TodoQueryResponse = {|
+  +todo: ?{|
     +text: string,
     +id: string,
-  |}>
+  |}
 |};
-export type TodosListQuery = {|
-  variables: TodosListQueryVariables,
-  response: TodosListQueryResponse,
+export type TodoQuery = {|
+  variables: TodoQueryVariables,
+  response: TodoQueryResponse,
 |};
 */
 
 
 /*
-query TodosListQuery {
-  listTodos {
+query TodoQuery(
+  $id: ID!
+) {
+  todo(id: $id) {
     text
     id
   }
@@ -34,12 +38,25 @@ query TodosListQuery {
 const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "id"
+  }
+],
+v1 = [
+  {
     "alias": null,
-    "args": null,
+    "args": [
+      {
+        "kind": "Variable",
+        "name": "id",
+        "variableName": "id"
+      }
+    ],
     "concreteType": "Todo",
     "kind": "LinkedField",
-    "name": "listTodos",
-    "plural": true,
+    "name": "todo",
+    "plural": false,
     "selections": [
       {
         "alias": null,
@@ -61,32 +78,32 @@ var v0 = [
 ];
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "TodosListQuery",
-    "selections": (v0/*: any*/),
+    "name": "TodoQuery",
+    "selections": (v1/*: any*/),
     "type": "Query",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "TodosListQuery",
-    "selections": (v0/*: any*/)
+    "name": "TodoQuery",
+    "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "5148dabcccb2f21c17a5b95c29772b01",
+    "cacheID": "495d4c6e28e222832cbfcd89246b6665",
     "id": null,
     "metadata": {},
-    "name": "TodosListQuery",
+    "name": "TodoQuery",
     "operationKind": "query",
-    "text": "query TodosListQuery {\n  listTodos {\n    text\n    id\n  }\n}\n"
+    "text": "query TodoQuery(\n  $id: ID!\n) {\n  todo(id: $id) {\n    text\n    id\n  }\n}\n"
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'bafc614702366d31f24d37237867733e';
+(node/*: any*/).hash = 'a9eac68c18a367111c7027d7520a97a5';
 
 module.exports = node;

@@ -51,7 +51,9 @@ code {
   }
 }
 
-.List-Container {
+.Container,
+.List-Container,
+.Todo-Container {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -59,10 +61,15 @@ code {
   align-items: center;
 }
 
-.List-Header {
+.List-Header,
+.Todo-Header {
   color: white;
 }
 
 .List-Item {
   margin: 20px;
+}
+
+.Todo-Text {
+  color: white;
 }

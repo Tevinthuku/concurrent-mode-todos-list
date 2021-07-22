@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import graphql from "babel-plugin-relay/macro";
 import {
@@ -6,20 +7,38 @@ import {
   type GraphQLTaggedNode,
 } from "react-relay/hooks";
 
-// const TodoQuery: GraphQLTaggedNode = graphql`
-//   query TodoQuery($id: ID!) {
-//     todo(id: $id) {
-//       text
-//       id
-//     }
-//   }
-// `;
+import type { TodoQuery } from "./__generated__/TodoQuery.graphql";
 
-export default function Todo(props) {
-  // const data = usePreloadedQuery(TodoQuery, props.prepared.todoDetailsQuery);
+const SingleTodoQuery: GraphQLTaggedNode = graphql`
+  query TodoQuery($id: ID!) {
+    todo(id: $id) {
+      text
+      id
+    }
+  }
+`;
+
+type Props = {
+  prepared: {
+    todoDetailsQuery: PreloadedQuery<TodoQuery>,
+  },
+};
+
+export default function Todo(props: Props): React$Element<"div"> {
+  const { todo } = usePreloadedQuery<TodoQuery>(
+    SingleTodoQuery,
+    props.prepared.todoDetailsQuery
+  );
+  if (!todo)
+    return (
+      <div className="Todo-Container">
+        <h3>This todo Item does not exist</h3>
+      </div>
+    );
   return (
-    <div>
-      <h1>Todo Details</h1>
+    <div className="Todo-Container">
+      <h1 className="Todo-Header">Todo Details</h1>
+      <blockquote className="Todo-Text">{todo.text}</blockquote>
     </div>
   );
 }

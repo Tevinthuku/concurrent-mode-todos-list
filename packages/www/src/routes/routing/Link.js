@@ -37,7 +37,7 @@ export default function Link(props) {
     <a
       style={{
         color: "white",
-        textDecoration: "none",
+        marginRight: "20px",
       }}
       href={props.to}
       onClick={changeRoute}

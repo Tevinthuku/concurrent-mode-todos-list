@@ -33,9 +33,7 @@ export default function TodosList(
   );
   return (
     <>
-      <div className="List-Container"> 
-        <Link to="/" children="Back Home" />
-        <h2 className="List-Header">List of todos</h2>
+      <div className="List-Container">
         <ul>
           {data.listTodos.map((todo, id) => (
             <li key={todo.id} className="List-Item">
