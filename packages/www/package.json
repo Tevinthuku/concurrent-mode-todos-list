@@ -7,20 +7,22 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "flow-bin": "^0.155.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "history": "^5.0.0",
+    "react": "^0.0.0-experimental-f42431abe",
+    "react-dom": "^0.0.0-experimental-f42431abe",
     "react-relay": "^11.0.2",
+    "react-router-config": "^5.1.1",
     "react-scripts": "4.0.3",
     "relay-runtime": "^11.0.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
     "flow": "flow",
-    "start": "npm run relay; concurrently --kill-others --names \"react-scripts,relay\" \"react-scripts start\" \"npm run relay --watch\"",
+    "start": "npm run relay; concurrently --kill-others --names \"react-scripts,relay\" \"react-scripts start\" \"npm run relay -- --watch\"",
     "build": "npm run relay && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "relay": "npm run relay-compiler --schema src/schema/schema.graphql --src ./src/ $@"
+    "relay": "relay-compiler --schema src/schema/schema.graphql --src ./src/ $@"
   },
   "eslintConfig": {
     "extends": [
