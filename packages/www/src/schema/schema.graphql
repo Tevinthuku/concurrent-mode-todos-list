@@ -7,11 +7,11 @@ directive @specifiedBy(
 type Query {
   hello(name: String!): String
   todo(id: Int!): Todo
-  listTodos(count: Int): [Todo]
+  listTodos(count: Int): [Todo]!
 }
 
 type Todo {
-  id: Int!
+  id: ID!
   text: String!
   complete: Boolean!
 }

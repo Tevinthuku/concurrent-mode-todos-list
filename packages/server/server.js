@@ -15,8 +15,8 @@ var schema = buildSchema(`
   }
   type Query {
     hello(name: String!): String
-    todo(id: Int!): Todo
-    listTodos(count: Int): [Todo]!
+    todo(id: ID!): Todo
+    listTodos(count: Int): [Todo!]!
   }
 `);
 

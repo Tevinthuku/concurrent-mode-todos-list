@@ -13,6 +13,7 @@ const TodosQuery: GraphQLTaggedNode = graphql`
   query TodosListQuery {
     listTodos {
       text
+      id
     }
   }
 `;
@@ -32,13 +33,17 @@ export default function TodosList(
   );
   return (
     <>
-      <Link to="/" children="Back Home" />
-
-      <ul>
-        {data.listTodos?.map((todo, id) => (
-          <li key={id}>{todo?.text}</li>
-        ))}
-      </ul>
+      <div className="List-Container"> 
+        <Link to="/" children="Back Home" />
+        <h2 className="List-Header">List of todos</h2>
+        <ul>
+          {data.listTodos.map((todo, id) => (
+            <li key={todo.id} className="List-Item">
+              <Link to={`/todos/${todo.id}`} children={todo.text} />
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }
