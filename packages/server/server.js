@@ -9,14 +9,14 @@ const PRODUCTION = process.env.NODE_ENV === "production";
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
   type Todo {
-    id: Int!
+    id: ID!
     text: String!
     complete: Boolean!
   }
   type Query {
     hello(name: String!): String
     todo(id: Int!): Todo
-    listTodos(count: Int): [Todo]
+    listTodos(count: Int): [Todo]!
   }
 `);
 
