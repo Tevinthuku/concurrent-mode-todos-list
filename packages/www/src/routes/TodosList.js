@@ -30,7 +30,6 @@ export default function TodosList(
     TodosQuery,
     props.prepared.listQuery
   );
-  console.log(data);
   return (
     <>
       <Link to="/" children="Back Home" />

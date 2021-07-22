@@ -13,5 +13,7 @@ async function fetchRelay(params, variables) {
 // Export a singleton instance of Relay Environment configured with our network function:
 export default new Environment({
   network: Network.create(fetchRelay),
-  store: new Store(new RecordSource()),
+  store: new Store(new RecordSource(), {
+    gcReleaseBufferSize: 30,
+  }),
 });

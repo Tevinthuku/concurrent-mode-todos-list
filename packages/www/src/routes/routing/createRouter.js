@@ -10,7 +10,6 @@ import { matchRoutes } from "react-router-config";
 export default function createRouter(routes, options) {
   // Initialize history
   const history = createBrowserHistory(options);
-
   // Find the initial match and prepare it
   const initialMatches = matchRoute(routes, history.location);
   const initialEntries = prepareMatches(initialMatches);
@@ -26,7 +25,7 @@ export default function createRouter(routes, options) {
   // Listen for location changes, match to the route entry, prepare the entry,
   // and notify subscribers. Note that this pattern ensures that data-loading
   // occurs *outside* of - and *before* - rendering.
-  const cleanup = history.listen((location, action) => {
+  const cleanup = history.listen(({ location, action }) => {
     if (location.pathname === currentEntry.location.pathname) {
       return;
     }
