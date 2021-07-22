@@ -8,6 +8,7 @@ import {
 } from "react-relay/hooks";
 
 import type { HelloSimpleNameQuery } from "./__generated__/HelloSimpleNameQuery.graphql";
+import Link from "./routing/Link";
 
 // Define a query
 const SimpleNameQuery: GraphQLTaggedNode = graphql`
@@ -31,6 +32,7 @@ function Hello(props: Props): React$Element<"div"> {
     <div className="App">
       <header className="App-header">
         <p>{data.hello}</p>
+        <Link to="/todos" children="View Todos List" />
       </header>
     </div>
   );

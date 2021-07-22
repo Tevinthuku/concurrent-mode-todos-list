@@ -35,6 +35,23 @@ const routes = [
       };
     },
   },
+
+  {
+    path: "/todos",
+    exact: true,
+    component: JSResource("TodosList", () => import("./TodosList")),
+    prepare: (params) => {
+      const TodosListQuery = require("./__generated__/TodosListQuery.graphql");
+      return {
+        listQuery: loadQuery(
+          RelayEnvironment,
+          TodosListQuery,
+          {},
+          { fetchPolicy: "store-or-network" }
+        ),
+      };
+    },
+  },
 ];
 
 export default routes;
