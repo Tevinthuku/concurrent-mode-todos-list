@@ -3,19 +3,35 @@ var { graphqlHTTP } = require("express-graphql");
 var { buildSchema } = require("graphql");
 var cors = require("cors");
 
+const TodosStore = require("./todos");
 const PORT = process.env.PORT || 4000;
 const PRODUCTION = process.env.NODE_ENV === "production";
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
+  type Todo {
+    id: Int!
+    text: String!
+    complete: Boolean!
+  }
   type Query {
     hello(name: String!): String
+    todo(id: Int!): Todo
+    listTodos(count: Int): [Todo]
   }
 `);
+
+const todosStore = new TodosStore();
 
 // The root provides a resolver function for each API endpoint
 var root = {
   hello: ({ name }) => {
     return `Hello there ${name}!`;
+  },
+  listTodos({ count }) {
+    return todosStore.list(count);
+  },
+  todo({ id }) {
+    return todosStore.get(id);
   },
 };
 
