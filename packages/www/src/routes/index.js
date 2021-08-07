@@ -60,7 +60,7 @@ const routes = [
         exact: true,
         component: JSResource("TodosItem", () => import("./Todo")),
         prepare: (params) => {
-          const TodoDetailsQuery = require("./__generated__/TodoQuery.graphql");
+          const TodoDetailsQuery = require("./Todo/__generated__/TodoQuery.graphql");
           return {
             todoDetailsQuery: loadQuery(
               RelayEnvironment,
