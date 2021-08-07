@@ -4,7 +4,6 @@ var { buildSchema } = require("graphql");
 var cors = require("cors");
 
 const TodosStore = require("./todos");
-const SubTodosStore = require("./subTodos");
 const PORT = process.env.PORT || 4000;
 const PRODUCTION = process.env.NODE_ENV === "production";
 // Construct a schema, using GraphQL schema language
@@ -13,6 +12,7 @@ var schema = buildSchema(`
     id: ID!
     text: String!
     complete: Boolean!
+    subTodos: [SubTodo!]!
   }
   type SubTodo {
     id: ID!
@@ -24,12 +24,10 @@ var schema = buildSchema(`
     hello(name: String!): String
     todo(id: ID!): Todo
     listTodos(count: Int): [Todo!]!
-    subTodos(todo: ID!): [SubTodo!]!
   }
 `);
 
 const todosStore = new TodosStore();
-const subTodosStore = new SubTodosStore();
 // The root provides a resolver function for each API endpoint
 var root = {
   hello: ({ name }) => {
@@ -40,9 +38,6 @@ var root = {
   },
   todo({ id }) {
     return todosStore.get(id);
-  },
-  subTodos({ todo }) {
-    return subTodosStore.getSubTodosFor(todo);
   },
 };
 
