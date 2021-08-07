@@ -9,11 +9,14 @@ import {
 
 import type { TodoQuery } from "./__generated__/TodoQuery.graphql";
 
+import SubTodos from "./Subtodos";
+
 const SingleTodoQuery: GraphQLTaggedNode = graphql`
   query TodoQuery($id: ID!) {
     todo(id: $id) {
       text
       id
+      ...Subtodos_todo
     }
   }
 `;
@@ -39,6 +42,8 @@ export default function Todo(props: Props): React$Element<"div"> {
     <div className="Todo-Container">
       <h1 className="Todo-Header">Todo Details</h1>
       <blockquote className="Todo-Text">{todo.text}</blockquote>
+
+      <SubTodos todo={todo} />
     </div>
   );
 }

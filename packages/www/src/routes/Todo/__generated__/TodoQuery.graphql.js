@@ -8,6 +8,7 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+type Subtodos_todo$ref = any;
 export type TodoQueryVariables = {|
   id: string
 |};
@@ -15,6 +16,7 @@ export type TodoQueryResponse = {|
   +todo: ?{|
     +text: string,
     +id: string,
+    +$fragmentRefs: Subtodos_todo$ref,
   |}
 |};
 export type TodoQuery = {|
@@ -31,7 +33,12 @@ query TodoQuery(
   todo(id: $id) {
     text
     id
+    ...Subtodos_todo
   }
+}
+
+fragment Subtodos_todo on Todo {
+  id
 }
 */
 
@@ -45,44 +52,51 @@ var v0 = [
 ],
 v1 = [
   {
-    "alias": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "id",
-        "variableName": "id"
-      }
-    ],
-    "concreteType": "Todo",
-    "kind": "LinkedField",
-    "name": "todo",
-    "plural": false,
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "text",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "id",
-        "storageKey": null
-      }
-    ],
-    "storageKey": null
+    "kind": "Variable",
+    "name": "id",
+    "variableName": "id"
   }
-];
+],
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "text",
+  "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "TodoQuery",
-    "selections": (v1/*: any*/),
+    "selections": [
+      {
+        "alias": null,
+        "args": (v1/*: any*/),
+        "concreteType": "Todo",
+        "kind": "LinkedField",
+        "name": "todo",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          (v3/*: any*/),
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "Subtodos_todo"
+          }
+        ],
+        "storageKey": null
+      }
+    ],
     "type": "Query",
     "abstractKey": null
   },
@@ -91,19 +105,33 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "TodoQuery",
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "alias": null,
+        "args": (v1/*: any*/),
+        "concreteType": "Todo",
+        "kind": "LinkedField",
+        "name": "todo",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          (v3/*: any*/)
+        ],
+        "storageKey": null
+      }
+    ]
   },
   "params": {
-    "cacheID": "495d4c6e28e222832cbfcd89246b6665",
+    "cacheID": "5c0cbc15714f6ab499c354266f66eb8e",
     "id": null,
     "metadata": {},
     "name": "TodoQuery",
     "operationKind": "query",
-    "text": "query TodoQuery(\n  $id: ID!\n) {\n  todo(id: $id) {\n    text\n    id\n  }\n}\n"
+    "text": "query TodoQuery(\n  $id: ID!\n) {\n  todo(id: $id) {\n    text\n    id\n    ...Subtodos_todo\n  }\n}\n\nfragment Subtodos_todo on Todo {\n  id\n}\n"
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'a9eac68c18a367111c7027d7520a97a5';
+(node/*: any*/).hash = '426a39efd43d3720ee7161a7cebe33cd';
 
 module.exports = node;
