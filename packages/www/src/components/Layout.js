@@ -1,6 +1,6 @@
 // @flow
 import React, { type Node } from "react";
-import Link from "./routing/Link";
+import Link from "../routes/routing/Link";
 type Props = {
   children: Node,
 };

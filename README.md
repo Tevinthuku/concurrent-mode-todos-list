@@ -35,4 +35,4 @@ npm run dev -- --scope=www
 
 #### TODOs
 - [ ] Integrate mutations, (toggling a todo)
-- [ ] Use Fragments to colocate data, (todo with subtodos)
+- [x] Use Fragments to colocate data, (todo with subtodos)

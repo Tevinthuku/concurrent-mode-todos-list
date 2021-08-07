@@ -4,7 +4,7 @@ import RelayEnvironment from "../RelayEnvironment";
 
 const routes = [
   {
-    component: JSResource("Layout", () => import("./Layout")),
+    component: JSResource("Layout", () => import("../components/Layout")),
     prepare: () => {},
     routes: [
       {
@@ -60,7 +60,7 @@ const routes = [
         exact: true,
         component: JSResource("TodosItem", () => import("./Todo")),
         prepare: (params) => {
-          const TodoDetailsQuery = require("./__generated__/TodoQuery.graphql");
+          const TodoDetailsQuery = require("./Todo/__generated__/TodoQuery.graphql");
           return {
             todoDetailsQuery: loadQuery(
               RelayEnvironment,

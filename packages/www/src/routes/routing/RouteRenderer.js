@@ -1,6 +1,7 @@
 import React from "react";
 import RoutingContext from "./RoutingContext";
-import ErrorBoundary from "../Errorboundary";
+import ErrorBoundary from "../../components/Errorboundary";
+import Spinner from "../../components/spinner";
 
 const { useContext, useEffect, useTransition, Suspense, useState } = React;
 
@@ -95,11 +96,17 @@ export default function RouterRenderer() {
   // Routes can error so wrap in an <ErrorBoundary>
   // Routes can suspend, so wrap in <Suspense>
   return (
-    <ErrorBoundary fallback={({ error }) => <div>{JSON.stringify(error)}</div>}>
-      <Suspense fallback={"Loading fallback..."}>
+    <ErrorBoundary
+      fallback={({ error }) => (
+        <div className="Text">{JSON.stringify(error)}</div>
+      )}
+    >
+      <Suspense fallback={<h3 className="Text">Loading route...</h3>}>
         {/* Indicate to the user that a transition is pending, even while showing the previous UI */}
         {isPending ? (
-          <div className="RouteRenderer-pending">Loading pending...</div>
+          <div className="RouteRenderer-pending">
+            <Spinner />
+          </div>
         ) : null}
         {routeComponent}
       </Suspense>

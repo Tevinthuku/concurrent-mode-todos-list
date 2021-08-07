@@ -10,9 +10,17 @@ type Query {
   listTodos(count: Int): [Todo!]!
 }
 
+type SubTodo {
+  id: ID!
+  text: String!
+  todo_id: ID!
+  complete: Boolean!
+}
+
 type Todo {
   id: ID!
   text: String!
   complete: Boolean!
+  subTodos: [SubTodo!]!
 }
 
