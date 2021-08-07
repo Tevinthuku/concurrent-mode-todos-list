@@ -4,7 +4,7 @@ import RelayEnvironment from "../RelayEnvironment";
 
 const routes = [
   {
-    component: JSResource("Layout", () => import("./Layout")),
+    component: JSResource("Layout", () => import("../components/Layout")),
     prepare: () => {},
     routes: [
       {

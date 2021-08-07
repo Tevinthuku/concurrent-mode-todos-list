@@ -12,7 +12,10 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type Subtodos_todo$ref: FragmentReference;
 declare export opaque type Subtodos_todo$fragmentType: Subtodos_todo$ref;
 export type Subtodos_todo = {|
-  +id: string,
+  +subTodos: $ReadOnlyArray<{|
+    +text: string,
+    +id: string,
+  |}>,
   +$refType: Subtodos_todo$ref,
 |};
 export type Subtodos_todo$data = Subtodos_todo;
@@ -33,8 +36,26 @@ const node/*: ReaderFragment*/ = {
     {
       "alias": null,
       "args": null,
-      "kind": "ScalarField",
-      "name": "id",
+      "concreteType": "SubTodo",
+      "kind": "LinkedField",
+      "name": "subTodos",
+      "plural": true,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "text",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "id",
+          "storageKey": null
+        }
+      ],
       "storageKey": null
     }
   ],
@@ -42,6 +63,6 @@ const node/*: ReaderFragment*/ = {
   "abstractKey": null
 };
 // prettier-ignore
-(node/*: any*/).hash = '0a74108f3b943f10b29915895d78c4f8';
+(node/*: any*/).hash = '0274d7fe77e094f3b8b0e41faa689226';
 
 module.exports = node;

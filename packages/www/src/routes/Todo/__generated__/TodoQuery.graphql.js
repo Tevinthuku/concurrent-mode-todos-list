@@ -38,7 +38,10 @@ query TodoQuery(
 }
 
 fragment Subtodos_todo on Todo {
-  id
+  subTodos {
+    text
+    id
+  }
 }
 */
 
@@ -115,19 +118,32 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
-          (v3/*: any*/)
+          (v3/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "SubTodo",
+            "kind": "LinkedField",
+            "name": "subTodos",
+            "plural": true,
+            "selections": [
+              (v2/*: any*/),
+              (v3/*: any*/)
+            ],
+            "storageKey": null
+          }
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "5c0cbc15714f6ab499c354266f66eb8e",
+    "cacheID": "5b9c512932d665809bcdd610ded27dad",
     "id": null,
     "metadata": {},
     "name": "TodoQuery",
     "operationKind": "query",
-    "text": "query TodoQuery(\n  $id: ID!\n) {\n  todo(id: $id) {\n    text\n    id\n    ...Subtodos_todo\n  }\n}\n\nfragment Subtodos_todo on Todo {\n  id\n}\n"
+    "text": "query TodoQuery(\n  $id: ID!\n) {\n  todo(id: $id) {\n    text\n    id\n    ...Subtodos_todo\n  }\n}\n\nfragment Subtodos_todo on Todo {\n  subTodos {\n    text\n    id\n  }\n}\n"
   }
 };
 })();

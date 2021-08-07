@@ -8,7 +8,6 @@ type Query {
   hello(name: String!): String
   todo(id: ID!): Todo
   listTodos(count: Int): [Todo!]!
-  subTodos(todo: ID!): [SubTodo!]!
 }
 
 type SubTodo {
@@ -22,5 +21,6 @@ type Todo {
   id: ID!
   text: String!
   complete: Boolean!
+  subTodos: [SubTodo!]!
 }
 
